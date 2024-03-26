@@ -713,7 +713,7 @@ if you can identify the runtime complexity of different algorithms. It's a super
 - ### Bitwise operations
     - [x] [Bits cheat sheet](https://github.com/jwasham/coding-interview-university/blob/main/extras/cheat%20sheets/bits-cheat-sheet.pdf)
         - you should know many of the powers of 2 from (2^1 to 2^16 and 2^32)
-    - [ ] Get a really good understanding of manipulating bits with: &, |, ^, ~, >>, <<
+    - [x] Get a really good understanding of manipulating bits with: &, |, ^, ~, >>, <<
         - [x] [words](https://en.wikipedia.org/wiki/Word_(computer_architecture))
         - [x] Good intro:
             [Bit Manipulation (video)](https://www.youtube.com/watch?v=7jkIUgLC29I)
@@ -730,9 +730,9 @@ if you can identify the runtime complexity of different algorithms. It's a super
         - [1s Complement](https://en.wikipedia.org/wiki/Ones%27_complement)
         - [2s Complement](https://en.wikipedia.org/wiki/Two%27s_complement)
     - [ ] Count set bits
-        - [4 ways to count bits in a byte (video)](https://youtu.be/Hzuzo9NJrlc)
-        - [Count Bits](https://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan)
-        - [How To Count The Number Of Set Bits In a 32 Bit Integer](http://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer)
+        - [x] [4 ways to count bits in a byte (video)](https://youtu.be/Hzuzo9NJrlc)
+        - [ ] [Count Bits](https://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan)
+        - [ ] [How To Count The Number Of Set Bits In a 32 Bit Integer](http://stackoverflow.com/questions/109023/how-to-count-the-number-of-set-bits-in-a-32-bit-integer)
     - [ ] Swap values:
         - [Swap](https://bits.stephan-brumme.com/swap.html)
     - [ ] Absolute value:
