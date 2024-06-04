@@ -9,6 +9,7 @@ typedef struct TreeNode {
 }
 TreeNode;
 
+int counterNodes;
 
 TreeNode* insert(int value, TreeNode* root){
 
@@ -56,9 +57,36 @@ if(root == NULL){
 
 }
 
+int getNodeCount(TreeNode* root){
+
+    if(root == NULL){                     
+        return 0;
+    }
+            
+    int counter = getNodeCount(root -> left);         
+
+    counter = counter + getNodeCount(root -> right);     
+
+    counter = counter + 1;    
+    return counter;
+}
+
 int main() {
 
-    TreeNode* root = malloc(sizeof(TreeNode));
-    insert(20, root);
+    TreeNode* root = NULL;
+    
+    root = insert(20, root);
+    root = insert(10, root);
+    root = insert(31, root);
+    root = insert(13, root);
+    root = insert(45, root);
+    root = insert(48, root);
+    root = insert(47, root);
+    root = insert(9, root);
+    root = insert(51, root);
+    root = insert(5, root);
+    root = insert(19, root);
 
+    printf("total itens = %d", getNodeCount(root));
+    
 }
