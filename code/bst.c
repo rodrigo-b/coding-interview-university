@@ -69,6 +69,18 @@ int getNodeCount(TreeNode* root){
 
     counter = counter + 1;    
     return counter;
+
+}
+
+void print_values(TreeNode* root){
+
+    if(root == NULL){                     
+        return;
+    }
+            
+    print_values(root -> left);     
+    printf("node value = %d \n", root->value); 
+    print_values(root -> right);     
 }
 
 int main() {
@@ -87,6 +99,7 @@ int main() {
     root = insert(5, root);
     root = insert(19, root);
 
-    printf("total itens = %d", getNodeCount(root));
-    
+    printf("total itens = %d \n", getNodeCount(root));
+    print_values(root);
+
 }
