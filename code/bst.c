@@ -107,6 +107,21 @@ void delete_tree(TreeNode** root){
     return;
 }
 
+bool is_in_tree(TreeNode* root, int value){
+
+    if(root == NULL){
+        return false;
+    }
+
+    if(value > root -> value){
+        is_in_tree(root -> right, value);
+    } else if (value < root -> value){
+        is_in_tree(root -> left, value);
+    } else {
+        return true;
+    }
+}
+
 int main() {
 
     TreeNode* root = NULL;
@@ -126,7 +141,9 @@ int main() {
     printf("total itens = %d \n", getNodeCount(root));
     print_values(root);
 
-    delete_tree(&root);
-    printf("print value \n");
-    print_values(root);
+    //delete_tree(&root);
+    //printf("print value \n");
+    //print_values(root);
+
+    printf("Is in tree ? %s \n", is_in_tree(root, 51)? "true" : "false");
 }
