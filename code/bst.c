@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+
 typedef struct TreeNode {
       int value;
       struct TreeNode *left;
@@ -21,7 +22,7 @@ if(root == NULL){
         return root;
     } 
 
-     TreeNode* temp = malloc(sizeof(TreeNode));
+    TreeNode* temp = malloc(sizeof(TreeNode));
     TreeNode* aux = malloc(sizeof(TreeNode));
 
     temp = root;
@@ -83,6 +84,29 @@ void print_values(TreeNode* root){
     print_values(root -> right);     
 }
 
+void delete_tree(TreeNode** root){
+
+    if(*root == NULL){           
+        return;
+    }
+
+    TreeNode *left = (*root) -> left;        
+    delete_tree(&left);
+
+    TreeNode *right = (*root) -> right;        
+    delete_tree(&right);
+
+    *root = NULL;
+    left = NULL;
+    right = NULL;
+
+    free(*root);
+    free(right);
+    free(left);
+  
+    return;
+}
+
 int main() {
 
     TreeNode* root = NULL;
@@ -102,4 +126,7 @@ int main() {
     printf("total itens = %d \n", getNodeCount(root));
     print_values(root);
 
+    delete_tree(&root);
+    printf("print value \n");
+    print_values(root);
 }
