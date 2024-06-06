@@ -124,9 +124,9 @@ bool is_in_tree(TreeNode* root, int value){
 
 int get_height(TreeNode* root){
 
-    if(root == NULL){
+ if(root == NULL){
         return -1;
-    }
+ }
 
   int leftHeight = get_height(root -> left);
   int rightHeight = get_height(root -> right);
@@ -136,7 +136,16 @@ int get_height(TreeNode* root){
   return  max + 1;
 }
 
+int get_min(TreeNode* root){
 
+  if(root == NULL){
+    return -1;
+  } else if(root -> left == NULL){
+    return root -> value;
+  }
+
+  return get_min(root -> left);  
+}
 
 
 int main() {
@@ -166,5 +175,9 @@ int main() {
 
     int height = get_height(root);
 
-    printf("height is = %d", height);
+    printf("height is = %d \n", height);
+
+    int minValue = get_min(root);
+
+    printf("min value = %d \n", minValue);
 }
