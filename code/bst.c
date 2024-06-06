@@ -147,6 +147,19 @@ int get_min(TreeNode* root){
   return get_min(root -> left);  
 }
 
+int get_max(TreeNode* root){
+
+    if(root == NULL){
+        return -1;
+    }
+
+    while(root -> right != NULL){
+        root = root -> right;
+    }
+
+    return root -> value;
+}
+
 
 int main() {
 
@@ -180,4 +193,8 @@ int main() {
     int minValue = get_min(root);
 
     printf("min value = %d \n", minValue);
+
+    int maxValue = get_max(root);
+
+    printf("max value = %d \n", maxValue);
 }
