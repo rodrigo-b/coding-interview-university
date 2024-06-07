@@ -160,6 +160,26 @@ int get_max(TreeNode* root){
     return root -> value;
 }
 
+bool is_binary_search_tree(TreeNode* root, int min, int max){
+
+    if(root == NULL){
+        return true;
+    }
+    
+    is_binary_search_tree(root -> left, min , root -> value);
+    is_binary_search_tree(root -> right,root->value , max);        
+
+    printf("root value = %d \n", root -> value);
+    printf("min value = %d \n", min);
+    printf("max value = %d \n", max);
+
+    if(root -> value > min || root -> value < max){        
+        return true;
+    }
+
+    return false;
+}
+
 
 int main() {
 
@@ -197,4 +217,7 @@ int main() {
     int maxValue = get_max(root);
 
     printf("max value = %d \n", maxValue);
+
+
+    printf("left is_binary_search_tree = %s \n", is_binary_search_tree(root,-999999,99999) ? "true": "false");
 }
