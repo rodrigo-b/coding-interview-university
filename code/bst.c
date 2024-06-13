@@ -147,17 +147,18 @@ int get_min(TreeNode* root){
   return get_min(root -> left);  
 }
 
-int get_max(TreeNode* root){
+TreeNode* get_max(TreeNode* root){
 
     if(root == NULL){
-        return -1;
+        TreeNode* nullNode = NULL;
+        return nullNode;
     }
 
     while(root -> right != NULL){
         root = root -> right;
     }
 
-    return root -> value;
+    return root;
 }
 
 bool is_binary_search_tree(TreeNode* root, int min, int max){
@@ -180,13 +181,50 @@ bool is_binary_search_tree(TreeNode* root, int min, int max){
     return false;
 }
 
+TreeNode* delete(TreeNode* root,int data){
+
+    if(root == NULL){    
+        return root;
+    }
+    
+    if(data > root -> value){
+        root -> right = delete(root -> right, data);
+    } else if (data < root -> value){
+        root -> left = delete(root -> left, data);
+    } else {
+
+        if(root -> left == NULL && root -> right == NULL){
+            root = NULL;
+            free(root);                      
+        } else if(root -> left == NULL){
+            TreeNode* tmp = malloc(sizeof(TreeNode));
+            tmp = root;
+            root = root -> right;
+            tmp = NULL;
+            free(tmp);
+        } else if(root -> right == NULL){
+            TreeNode* tmp = malloc(sizeof(TreeNode));
+            tmp = root;
+            root = root -> left;
+            tmp = NULL;
+            free(tmp);
+        }else {            
+            TreeNode* max = malloc(sizeof(TreeNode));        
+            max = get_max(root -> left);    
+            root -> value = max -> value;                    
+            root -> left = delete(root -> left, max -> value);            
+        }        
+    }
+
+    return root; 
+}
 
 int main() {
 
     TreeNode* root = NULL;
     
     root = insert(20, root);
-    root = insert(10, root);
+    root = insert(12, root);
     root = insert(31, root);
     root = insert(13, root);
     root = insert(45, root);
@@ -196,6 +234,9 @@ int main() {
     root = insert(51, root);
     root = insert(5, root);
     root = insert(19, root);
+    root = insert(6, root);
+    root = insert(11, root);
+    root = insert(10, root);
 
     printf("total itens = %d \n", getNodeCount(root));
     print_values(root);
@@ -214,10 +255,14 @@ int main() {
 
     printf("min value = %d \n", minValue);
 
-    int maxValue = get_max(root);
+    TreeNode* rootWithMaxValue = get_max(root);
 
-    printf("max value = %d \n", maxValue);
+    printf("max value = %d \n", rootWithMaxValue -> value);
 
+    printf("is_binary_search_tree = %s \n", is_binary_search_tree(root,-999999,99999) ? "true": "false");
 
-    printf("left is_binary_search_tree = %s \n", is_binary_search_tree(root,-999999,99999) ? "true": "false");
+    delete(root, 12);
+    print_values(root);
+    //printf("is_binary_search_tree = %s \n", is_binary_search_tree(root,-999999,99999) ? "true": "false");
+
 }
