@@ -219,6 +219,56 @@ TreeNode* delete(TreeNode* root,int data){
     return root; 
 }
 
+int get_sucessor(TreeNode* root,int data){
+
+    if(root == NULL){
+        return -1;
+    }
+
+    int sucessor = get_sucessor(root -> left, data);
+
+    if(root -> value > data && sucessor < data){
+        return root -> value;
+    } else if(sucessor == -1){
+        sucessor = get_sucessor(root -> right, data);
+    }
+
+    return sucessor;
+}
+
+//pseudocode for a better implementation
+int get_sucessor_2(TreeNode* root , int data){
+
+       if(root == NULL){
+       return -1;
+       }
+
+      //TreeNode* node = findRoot(root);
+      // if(node -> right != NULL){
+      // return findMin(node -> right);
+      //}
+      //else {
+
+        //TreeNode* sucessor = NULL;
+        //TreeNode* ancestor = root;
+
+        //while(ancestor != current){
+
+            //if(node -> data < ancestor -> data){
+                //sucessor = ancestor;
+              //  ancestor = ancestor -> left;
+            //} else {
+             //   ancestor = ancestor -> right;
+          //  }
+
+        //}
+
+        //return sucessor -> value;
+
+      //}
+      return 0;
+}
+
 int main() {
 
     TreeNode* root = NULL;
@@ -261,8 +311,10 @@ int main() {
 
     printf("is_binary_search_tree = %s \n", is_binary_search_tree(root,-999999,99999) ? "true": "false");
 
-    delete(root, 12);
+    //delete(root, 12);
     print_values(root);
+
+    printf("Sucessor is equal to %d \n", get_sucessor(root,10));
     //printf("is_binary_search_tree = %s \n", is_binary_search_tree(root,-999999,99999) ? "true": "false");
 
 }
